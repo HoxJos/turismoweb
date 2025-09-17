@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ViajesWEB - Descubre destinos increíbles</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-grid">
+      <div>
+        <h1>ViajesWEB</h1>
+        <p class="tagline">Inspírate. Encuentra tu próxima aventura.</p>
+      </div>
+      <nav class="nav-actions">
+        <input id="search" placeholder="Buscar destinos, países o actividades">
+        <button id="favorites-btn" class="btn">Favoritos <span id="fav-count" class="badge">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="filters">
+      <div class="card filter-card">
+        <h3>Filtrar destinos</h3>
+        <div class="row">
+          <select id="region">
+            <option value="all">Todas las regiones</option>
+            <option value="americas">Américas</option>
+            <option value="europe">Europa</option>
+            <option value="asia">Asia</option>
+            <option value="africa">África</option>
+            <option value="oceania">Oceanía</option>
+          </select>
+          <select id="type">
+            <option value="all">Todos los tipos</option>
+            <option value="playa">Playa</option>
+            <option value="montaña">Montaña</option>
+            <option value="ciudad">Ciudad</option>
+            <option value="aventura">Aventura</option>
+          </select>
+        </div>
+        <div class="row actions">
+          <button id="export-btn" class="btn">Exportar favoritos (JSON)</button>
+          <button id="import-btn" class="btn">Importar (JSON)</button>
+          <input id="file-input" type="file" accept="application/json" style="display:none">
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog">
+      <h2>Destinos recomendados</h2>
+      <div id="destinations-list" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">© 2025 ViajesWEB — Inspírate y viaja seguro</div>
+  </footer>
+
+  <script src="js/estilos.js"></script>
+</body>
+</html>

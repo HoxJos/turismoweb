@@ -1,0 +1,54 @@
+/* estilos.css - ViajesWEB: tema moderno */
+:root{
+  --bg: linear-gradient(180deg,#f8fafc,#eef2ff);
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#0ea5a4; /* teal */
+  --accent-2:#3b82f6; /* blue */
+  --accent-3:#f97316; /* orange */
+  --shadow: 0 10px 30px rgba(2,6,23,0.08);
+  --radius:14px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#08203a;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.header-grid{display:flex;justify-content:space-between;align-items:center}
+.app-header{padding:18px 0}
+.app-header h1{margin:0;font-size:1.6rem;color:var(--accent-2)}
+.tagline{margin:6px 0 0;color:var(--muted)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.badge{background:var(--accent-3);color:white;padding:2px 8px;border-radius:999px;font-size:0.8rem;margin-left:8px}
+.app-footer{padding:18px 0;text-align:center;color:var(--muted);font-size:0.9rem}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.filter-card{max-width:420px}
+.filters{margin-bottom:18px}
+.row{display:flex;gap:12px;margin-top:12px}
+select,input[type=text]{padding:10px 12px;border-radius:10px;border:1px solid #e6eef8;background:transparent}
+input::placeholder{color:#94a3b8}
+.actions{display:flex;gap:8px;align-items:center;margin-top:14px}
+.btn{background:transparent;border:1px solid #cbd5e1;padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;border:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:16px}
+.destination{border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.9),#fff);border:1px solid #f1f5f9}
+.destination .thumb{height:140px;background-size:cover;background-position:center}
+.destination .info{padding:12px}
+.destination h4{margin:0 0 6px 0}
+.meta{font-size:0.9rem;color:var(--muted)}
+.destination .row{margin-top:10px}
+.small{font-size:0.85rem;color:var(--muted)}
+.fav-btn{background:transparent;border:none;color:var(--accent-3);cursor:pointer}
+
+.empty{padding:28px;text-align:center;color:var(--muted);border-radius:10px;border:1px dashed #e6eef8}
+
+@media (max-width:900px){
+  .header-grid{flex-direction:column;align-items:flex-start;gap:12px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+}
