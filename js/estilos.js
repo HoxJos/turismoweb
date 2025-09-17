@@ -107,33 +107,74 @@
     }
   }
 
+  // Manejo de modales
+  const detailsModal = document.getElementById('details-modal');
+  const favoritesModal = document.getElementById('favorites-modal');
+  const modals = document.querySelectorAll('.modal');
+  const closeButtons = document.querySelectorAll('.modal-close');
+  
+  // Cerrar modal al hacer clic fuera o en botón cerrar
+  modals.forEach(modal => {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal(modal);
+    });
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const modal = button.closest('.modal');
+      closeModal(modal);
+    });
+  });
+
+  function openModal(modal) {
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modal) {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
   function showDetails(d){
-    const html = `
-      <div style="padding:12px">
-        <h3>${escapeHtml(d.name)}</h3>
+    const modalBody = detailsModal.querySelector('.modal-body');
+    const modalTitle = detailsModal.querySelector('.modal-title');
+    
+    modalTitle.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${escapeHtml(d.name)}`;
+    modalBody.innerHTML = `
+      <img src="${d.img}" alt="${escapeHtml(d.name)}" class="destination-modal-image">
+      <div class="destination-modal-info">
         <p class="meta">${escapeHtml(d.country)} — ${capitalize(d.type)}</p>
         <p>Precio desde <strong>$${Number(d.price).toFixed(0)}</strong></p>
-        <p class="small">Descripción de ejemplo: disfruta de una experiencia inolvidable en ${escapeHtml(d.name)}.</p>
-        <div style="margin-top:12px;display:flex;gap:8px">
-          <button id="book-btn" class="btn primary">Reservar (simulado)</button>
-          <button id="close-btn" class="btn">Cerrar</button>
-        </div>
+        <p class="small">Descripción de ejemplo: disfruta de una experiencia inolvidable en ${escapeHtml(d.name)}. 
+        Descubre la magia de este destino único y crea recuerdos que durarán toda la vida.</p>
       </div>
     `;
-    const win = window.open('', '_blank', 'width=420,height=520');
-    win.document.write(`<html><head><title>${d.name}</title><link rel=stylesheet href="../css/estilos.css"></head><body>${html}</body></html>`);
+
+    openModal(detailsModal);
   }
 
   function showFavorites(){
+    const favsList = document.getElementById('favorites-list');
     const favs = favorites.map(id=> destinations.find(d=>d.id===id)).filter(Boolean);
-    const win = window.open('', '_blank', 'width=640,height=700');
-    let html = '<div style="padding:18px"><h2>Favoritos</h2>';
-    if(favs.length===0) html += '<p>No tienes favoritos guardados.</p>';
-    favs.forEach(f=>{
-      html += `<div style="margin-bottom:12px"><strong>${escapeHtml(f.name)}</strong> — ${escapeHtml(f.country)}<br/><small>Desde $${Number(f.price).toFixed(0)}</small></div>`;
-    });
-    html += '</div>';
-    win.document.write(`<html><head><title>Favoritos</title><link rel=stylesheet href="../css/estilos.css"></head><body>${html}</body></html>`);
+    
+    if(favs.length === 0) {
+      favsList.innerHTML = '<div class="empty">No tienes destinos favoritos guardados.</div>';
+    } else {
+      favsList.innerHTML = favs.map(f => `
+        <div class="favorite-item">
+          <img src="${f.img}" alt="${escapeHtml(f.name)}">
+          <div>
+            <strong>${escapeHtml(f.name)}</strong>
+            <div class="meta">${escapeHtml(f.country)} — ${capitalize(f.type)}</div>
+            <div class="small">Desde $${Number(f.price).toFixed(0)}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    openModal(favoritesModal);
   }
 
   function exportFavorites(){

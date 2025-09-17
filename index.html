@@ -5,47 +5,90 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ViajesWEB - Descubre destinos increíbles</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/liquidglass.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
   <header class="app-header">
     <div class="container header-grid">
-      <div>
-        <h1>ViajesWEB</h1>
-        <p class="tagline">Inspírate. Encuentra tu próxima aventura.</p>
+      <div class="brand">
+        <h1><i class="fas fa-globe-americas"></i> ViajesWEB</h1>
+        <p class="tagline"><i class="fas fa-map-marker-alt"></i> Inspírate. Encuentra tu próxima aventura.</p>
       </div>
       <nav class="nav-actions">
-        <input id="search" placeholder="Buscar destinos, países o actividades">
-        <button id="favorites-btn" class="btn">Favoritos <span id="fav-count" class="badge">0</span></button>
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input id="search" placeholder="Buscar destinos, países o actividades">
+        </div>
+        <button id="favorites-btn" class="btn btn-favorite">
+          <i class="fas fa-heart"></i>
+          Favoritos 
+          <span id="fav-count" class="badge">0</span>
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <section class="filters">
-      <div class="card filter-card">
-        <h3>Filtrar destinos</h3>
-        <div class="row">
-          <select id="region">
-            <option value="all">Todas las regiones</option>
-            <option value="americas">Américas</option>
-            <option value="europe">Europa</option>
-            <option value="asia">Asia</option>
-            <option value="africa">África</option>
-            <option value="oceania">Oceanía</option>
-          </select>
-          <select id="type">
-            <option value="all">Todos los tipos</option>
-            <option value="playa">Playa</option>
-            <option value="montaña">Montaña</option>
-            <option value="ciudad">Ciudad</option>
-            <option value="aventura">Aventura</option>
-          </select>
+      <div class="filter-panel">
+        <div class="filter-header">
+          <h3><i class="fas fa-filter"></i> Filtrar destinos</h3>
         </div>
-        <div class="row actions">
-          <button id="export-btn" class="btn">Exportar favoritos (JSON)</button>
-          <button id="import-btn" class="btn">Importar (JSON)</button>
-          <input id="file-input" type="file" accept="application/json" style="display:none">
+        
+        <div class="filter-content">
+          <div class="filter-group">
+            <label><i class="fas fa-globe"></i> Región</label>
+            <div class="select-wrapper">
+              <select id="region">
+                <option value="all">Todas las regiones</option>
+                <option value="americas">Américas</option>
+                <option value="europe">Europa</option>
+                <option value="asia">Asia</option>
+                <option value="africa">África</option>
+                <option value="oceania">Oceanía</option>
+              </select>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label><i class="fas fa-map-signs"></i> Tipo de destino</label>
+            <div class="select-wrapper">
+              <select id="type">
+                <option value="all">Todos los tipos</option>
+                <option value="playa"><i class="fas fa-umbrella-beach"></i> Playa</option>
+                <option value="montaña"><i class="fas fa-mountain"></i> Montaña</option>
+                <option value="ciudad"><i class="fas fa-city"></i> Ciudad</option>
+                <option value="aventura"><i class="fas fa-hiking"></i> Aventura</option>
+              </select>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label><i class="fas fa-dollar-sign"></i> Precio máximo</label>
+            <div class="range-slider">
+              <input type="range" id="price-range" min="0" max="2000" step="100" value="1000">
+              <span class="range-value">$1000</span>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-glass" id="clear-filters">
+              <i class="fas fa-undo"></i> Limpiar
+            </button>
+            <!-- 
+            <button class="btn btn-glass" id="export-btn">
+              <i class="fas fa-file-export"></i> Exportar
+            </button>
+            <button class="btn btn-glass" id="import-btn">
+              <i class="fas fa-file-import"></i> Importar
+            </button>
+            <input id="file-input" type="file" accept="application/json" style="display:none">
+            -->
+          </div>
         </div>
       </div>
     </section>
@@ -57,8 +100,99 @@
   </main>
 
   <footer class="app-footer">
-    <div class="container">© 2025 ViajesWEB — Inspírate y viaja seguro</div>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Sección 1: Información de la empresa -->
+        <div class="footer-section">
+          <h4 class="footer-title">Turista de Clase</h4>
+          <p class="company-name">SAC</p>
+          <p class="footer-description">
+            Descubre los destinos más increíbles del Perú con nuestros paquetes turísticos de primera clase.
+          </p>
+        </div>
+
+        <!-- Sección 2: Enlaces rápidos 
+        <div class="footer-section">
+          <h4 class="footer-title">Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#destinos">Destinos</a></li>
+            <li><a href="#paquetes">Paquetes</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+          </ul>
+        </div>
+        -->
+        <!-- Sección 3: Información de contacto -->
+        <div class="footer-section">
+          <h4 class="footer-title">Contacto</h4>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+51 984 123 456</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@turistadeclase.com</span>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Cusco, Perú</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sección 4: Redes sociales -->
+        <div class="footer-section">
+          <h4 class="footer-title">Síguenos</h4>
+          <p class="social-description">Mantente conectado para ofertas especiales y actualizaciones de viajes.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2024 Turista de Clase SAC. Todos los derechos reservados.
+        </div>
+        <div class="footer-legal">
+          <a href="#terminos">Términos de Servicio</a>
+          <a href="#privacidad">Política de Privacidad</a>
+        </div>
+      </div>
+    </div>
   </footer>
+
+  <!-- Modal de Detalles -->
+  <div id="details-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"></h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-glass" data-action="book"><i class="fas fa-ticket"></i> Reservar</button>
+        <button class="btn btn-glass" data-action="close">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Favoritos -->
+  <div id="favorites-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fas fa-heart"></i> Mis Favoritos</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div id="favorites-list"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/estilos.js"></script>
 </body>
